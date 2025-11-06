@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------------------------------------------------------------
---Initialization functions DO NOT TOUCH UNLESS YOU KNOW WHAT YOURE DOING
+--Initialization functions
 -------------------------------------------------------------------------------------------------------------------------------------
 
 function get_sets()
@@ -29,25 +29,34 @@ function user_setup()
     state.IdleMode:options('DT','Refresh')
     state.WeaponLock = M(false, 'Weapon Lock')
 
+    
 --You can cycle states to make some things easier. Define the states here then cycle by binding it to a key in the next section
     --state.BarElement = M{['description']='BarElement', 'Barfira', 'Barblizzara', 'Baraera', 'Barstonra', 'Barthundra', 'Barwatera'}
     --state.BarStatus = M{['description']='BarStatus', 'Baramnesra', 'Barvira', 'Barparalyzra', 'Barsilencera', 'Barpetra', 'Barpoisonra', 'Barblindra', 'Barsleepra'}
     --state.BoostSpell = M{['description']='BoostSpell', 'Boost-STR', 'Boost-INT', 'Boost-AGI', 'Boost-VIT', 'Boost-DEX', 'Boost-MND', 'Boost-CHR'}
 
+    
 -- This is where you bind keys if you want everything in one doc
+    send_command('bind f9 gs c cycle OffenseMode')
+    send_command('bind f10 gs c cycle CastingMode')
+    send_command('bind f1 gs c cycle DefenseMode')
+    send_command('bind f12 gs c cycle IdleMode')
     --send_command('bind ^home gs c cycleback BarElement') <- example of the state cycling from above ^
     --send_command('bind ^end gs c cycle BarElement')      <- example of the state cycling from above ^
     
-    --send_command('bind ^` input /ja "Afflatus Solace" <me>')
+    --send_command('bind ^` input /ja "Afflatus Solace" <me>') <- can bind text input as well
     --send_command('bind !` input /ja"Afflatus Misery" <me>')
 end
 
+
 -- This is where you unbind keys if you want everything in one doc
 function user_unload()
+    send_command('unbind f9')
+    send_command('unbind f10')
+    send_command('unbind f11')
+    send_command('unbind f12')
     --send_command('unbind ^`')
     --send_command('unbind !`')
-
-
 end
 
 -------------------------------------------------------------------------------------------------------------------------------------
