@@ -1,7 +1,6 @@
 # SimpLuacity
-ffxi luas made easy. Currently just a simple, generic lua that can work for any job
-
 This is meant to be a generic lua for anyone to plug-and-play, even if you know nothing about programming.
+Since it is intended for entry level, it is currently strictly gear swapping: Precasts, midcasts, idles, and a couple QoL hooks
 
 
 It's broken up into a few main parts, each with their own functions:
