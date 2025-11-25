@@ -29,17 +29,15 @@ function user_setup()
     state.IdleMode:options('DT','Refresh')
     state.WeaponLock = M(false, 'Weapon Lock')
 
-    
 --You can cycle states to make some things easier. Define the states here then cycle by binding it to a key in the next section
     --state.BarElement = M{['description']='BarElement', 'Barfira', 'Barblizzara', 'Baraera', 'Barstonra', 'Barthundra', 'Barwatera'}
     --state.BarStatus = M{['description']='BarStatus', 'Baramnesra', 'Barvira', 'Barparalyzra', 'Barsilencera', 'Barpetra', 'Barpoisonra', 'Barblindra', 'Barsleepra'}
     --state.BoostSpell = M{['description']='BoostSpell', 'Boost-STR', 'Boost-INT', 'Boost-AGI', 'Boost-VIT', 'Boost-DEX', 'Boost-MND', 'Boost-CHR'}
 
-    
 -- This is where you bind keys if you want everything in one doc
     send_command('bind f9 gs c cycle OffenseMode')
     send_command('bind f10 gs c cycle CastingMode')
-    send_command('bind f1 gs c cycle DefenseMode')
+    send_command('bind f11 gs c cycle DefenseMode')
     send_command('bind f12 gs c cycle IdleMode')
     --send_command('bind ^home gs c cycleback BarElement') <- example of the state cycling from above ^
     --send_command('bind ^end gs c cycle BarElement')      <- example of the state cycling from above ^
@@ -47,7 +45,6 @@ function user_setup()
     --send_command('bind ^` input /ja "Afflatus Solace" <me>') <- can bind text input as well
     --send_command('bind !` input /ja"Afflatus Misery" <me>')
 end
-
 
 -- This is where you unbind keys if you want everything in one doc
 function user_unload()
@@ -57,6 +54,8 @@ function user_unload()
     send_command('unbind f12')
     --send_command('unbind ^`')
     --send_command('unbind !`')
+
+
 end
 
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -204,199 +203,7 @@ function init_gear_sets()
         back="",
         waist="",
         }
--------------------------------------------------------------------------------------------------------------------------------------
---Na spells
--------------------------------------------------------------------------------------------------------------------------------------
-    sets.midcast.StatusRemoval = {
-        main="",
-        sub="",
-        ammo="",
-        head="",
-        body="",
-        hands="",
-        legs="",
-        feet="",
-        neck="",
-        ear1="",
-        ear2="",
-        ring1="",
-        ring2="",
-        back="",
-        waist="",
-        }
 
-    sets.midcast.Cursna = {
-        main="",
-        sub="",
-        ammo="",
-        head="",
-        body="",
-        hands="",
-        legs="",
-        feet="",
-        neck="",
-        ear1="",
-        ear2="",
-        ring1="",
-        ring2="",
-        back="",
-        waist="",
-        }
--------------------------------------------------------------------------------------------------------------------------------------
---Enhancing
--------------------------------------------------------------------------------------------------------------------------------------
-    sets.midcast['Enhancing Magic'] = {
-        main="",
-        sub="",
-        ammo="",
-        head="",
-        body="",
-        hands="",
-        legs="",
-        feet="",
-        neck="",
-        ear1="",
-        ear2="",
-        ring1="",
-        ring2="",
-        back="",
-        waist="",
-        }
-
-    sets.midcast.EnhancingDuration = {
-        main="",
-        sub="",
-        ammo="",
-        head="",
-        body="",
-        hands="",
-        legs="",
-        feet="",
-        neck="",
-        ear1="",
-        ear2="",
-        ring1="",
-        ring2="",
-        back="",
-        waist="",
-        }
-
-    sets.midcast.Aquaveil = {
-        main="",
-        sub="",
-        ammo="",
-        head="",
-        body="",
-        hands="",
-        legs="",
-        feet="",
-        neck="",
-        ear1="",
-        ear2="",
-        ring1="",
-        ring2="",
-        back="",
-        waist="",
-        }
--------------------------------------------------------------------------------------------------------------------------------------
---Regens
--------------------------------------------------------------------------------------------------------------------------------------
-    sets.midcast.Regen = {
-        main="",
-        sub="",
-        ammo="",
-        head="",
-        body="",
-        hands="",
-        legs="",
-        feet="",
-        neck="",
-        ear1="",
-        ear2="",
-        ring1="",
-        ring2="",
-        back="",
-        waist="",
-        }
-
-    sets.midcast.RegenDuration = {
-        main="",
-        sub="",
-        ammo="",
-        head="",
-        body="",
-        hands="",
-        legs="",
-        feet="",
-        neck="",
-        ear1="",
-        ear2="",
-        ring1="",
-        ring2="",
-        back="",
-        waist="",
-        }
-
--------------------------------------------------------------------------------------------------------------------------------------
---Divine Magic
--------------------------------------------------------------------------------------------------------------------------------------
-    sets.midcast['Divine Magic'] = {
-        main="",
-        sub="",
-        ammo="",
-        head="",
-        body="",
-        hands="",
-        legs="",
-        feet="",
-        neck="",
-        ear1="",
-        ear2="",
-        ring1="",
-        ring2="",
-        back="",
-        waist="",
-        }
-
-    sets.midcast.Banish = {
-        main="",
-        sub="",
-        ammo="",
-        head="",
-        body="",
-        hands="",
-        legs="",
-        feet="",
-        neck="",
-        ear1="",
-        ear2="",
-        ring1="",
-        ring2="",
-        back="",
-        waist="",
-        }
-
-    sets.midcast.Holy = sets.midcast.Banish
--------------------------------------------------------------------------------------------------------------------------------------
---Enfeebs
--------------------------------------------------------------------------------------------------------------------------------------
-    sets.midcast.Enfeebles = {
-        main="",
-        sub="",
-        ammo="",
-        head="",
-        body="",
-        hands="",
-        legs="",
-        feet="",
-        neck="",
-        ear1="",
-        ear2="",
-        ring1="",
-        ring2="",
-        back="",
-        waist="",
-        }
 -------------------------------------------------------------------------------------------------------------------------------------
 --Idle Sets
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -504,20 +311,6 @@ end
 --Hooks for events, this is where all the logic is ORDER MATTERS HERE, IT SIGNIFIES PRIORITY
 -------------------------------------------------------------------------------------------------------------------------------------
 
---After casting Enhancing magic: checks if swapping to duration set, refresh set, and regen state
-function job_post_midcast(spell, action, spellMap, eventArgs)
-    if spell.skill == 'Enhancing Magic' then
-        if classes.NoSkillSpells:contains(spell.english) then
-            equip(sets.midcast.EnhancingDuration)
-            if spellMap == 'Refresh' then
-                equip(sets.midcast.Refresh)
-            end
-        end
-        if spellMap == "Regen" and state.RegenMode.value == 'Duration' then
-            equip(sets.midcast.RegenDuration)
-        end
-    end
-end
 
 -- Handle notifications of general user state change.
 function job_state_change(stateField, newValue, oldValue)
@@ -526,14 +319,6 @@ function job_state_change(stateField, newValue, oldValue)
     else
         enable('main','sub')
     end
-end
-
--- Equip refresh set when <60% mana
-function customize_idle_set(idleSet)
-    if player.mpp < 60 then
-        idleSet = sets.idle.Refresh
-    end
-    return idleSet
 end
 
 -- Prevents the no_swap_gear from being swapped out
