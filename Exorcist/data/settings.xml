@@ -1,0 +1,22 @@
+<?xml version="1.1" ?>
+<settings>
+    <global>
+        <DoomOffText>doom off</DoomOffText>
+        <DoomOnText>doom</DoomOnText>
+        <flags>
+            <bold>true</bold>
+            <draggable>true</draggable>
+        </flags>
+        <pos>
+            <x>768</x>
+            <y>540</y>
+        </pos>
+        <show_box>true</show_box>
+        <text>
+            <bg_alpha>100</bg_alpha>
+            <font>Consolas</font>
+            <size>14</size>
+        </text>
+        <wait>3</wait>
+    </global>
+</settings>
